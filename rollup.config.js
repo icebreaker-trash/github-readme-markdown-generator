@@ -12,10 +12,10 @@ const config = {
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: isDev
-      // exports: 'auto'
-    },
-    { format: 'esm', file: pkg.module, sourcemap: isDev }
+      sourcemap: isDev,
+      exports: 'auto'
+    }
+    // { format: 'esm', file: pkg.module, sourcemap: isDev }
   ],
 
   plugins: [
@@ -25,7 +25,12 @@ const config = {
     commonjs(),
     typescript({ tsconfig: './tsconfig.build.json' })
   ],
-  external: [...(pkg.dependencies ? Object.keys(pkg.dependencies) : [])]
+  external: [
+    ...(pkg.dependencies ? Object.keys(pkg.dependencies) : []),
+    'fs/promises',
+    'vue/server-renderer',
+    'vue/compiler-sfc'
+  ]
 }
 
 export default config

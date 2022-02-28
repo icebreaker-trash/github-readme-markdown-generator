@@ -1,9 +1,8 @@
 {
-  "name": "npm-lib-template",
+  "name": "ssr-markdown-generator",
   "version": "1.0.0",
-  "description": "npm-lib-template",
+  "description": "ssr-markdown-generator",
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
     "dev": "cross-env NODE_ENV=development rollup -cw",
@@ -11,11 +10,12 @@
     "build:tsc": "cross-env NODE_ENV=development tsc --build tsconfig.json",
     "test": "jest",
     "init:rename": "node scripts/init/rename.js",
-    "clean": "node scripts/clean.js"
+    "clean": "node scripts/clean.js",
+    "raw": "node scripts/raw"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sonofmagic/npm-lib-template.git"
+    "url": "git+https://github.com/sonofmagic/ssr-markdown-generator.git"
   },
   "files": [
     "dist"
@@ -28,9 +28,9 @@
   "author": "SonOfMagic <qq1324318532@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sonofmagic/npm-lib-template/issues"
+    "url": "https://github.com/sonofmagic/ssr-markdown-generator/issues"
   },
-  "homepage": "https://github.com/sonofmagic/npm-lib-template#readme",
+  "homepage": "https://github.com/sonofmagic/ssr-markdown-generator#readme",
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.8",
     "@rollup/plugin-commonjs": "^21.0.1",
@@ -44,16 +44,23 @@
     "@typescript-eslint/parser": "^5.8.0",
     "cross-env": "^7.0.3",
     "del": "^6.0.0",
-    "eslint": "8.6.0",
+    "eslint": "8.10.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.0",
     "jest": "^27.4.5",
+    "juice": "^8.0.0",
     "rollup": "^2.62.0",
     "ts-jest": "^27.1.2",
     "ts-node": "^10.4.0",
     "tslib": "^2.3.1",
     "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^2.2.2",
+    "@vitejs/plugin-vue-jsx": "^1.3.7",
+    "vite": "^2.8.4",
+    "vue": "^3.2.31"
   }
 }
