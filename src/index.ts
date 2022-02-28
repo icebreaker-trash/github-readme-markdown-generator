@@ -3,7 +3,8 @@ import fs from 'fs/promises'
 import { createSSRApp } from 'vue'
 import { createServer } from 'vite'
 import { renderToString } from 'vue/server-renderer'
-
+import { Module } from 'module'
+import path from 'path'
 import {
   parse,
   // compileStyleAsync,
@@ -15,12 +16,30 @@ import {
   // transformRef,
   // shouldTransform
 } from 'vue/compiler-sfc'
-
+require = require('esm')(module/*, options */)
 export function createApp () {
   return createSSRApp({
     data: () => ({ count: 1 }),
     template: '<div @click="count++">{{ count }}</div>'
   })
+}
+const parentModule = module
+function execute (code: string) {
+  const resource = 'test.js'
+  const module = new Module(resource, parentModule)
+  // eslint-disable-next-line no-underscore-dangle
+  // @ts-ignore
+  module.paths = Module._nodeModulePaths(path.resolve(__dirname, './fixtures'))
+  module.filename = resource
+
+  // eslint-disable-next-line no-underscore-dangle
+  // @ts-ignore
+  module._compile(
+    code,
+    resource
+  )
+
+  return module.exports
 }
 
 export async function vue2Md (source: string) {
@@ -83,22 +102,11 @@ export async function vue2Md (source: string) {
   }
   const code = output.join('\n')
   console.log(code)
+  const res = execute(code)
+  console.log(res)
   await fs.writeFile('./demo.js', code, {
     encoding: 'utf-8'
   })
-  // const b = compileScript(descriptor, {
-  //   id: mockId
-  // })
-  // const r = compileTemplate({
-  //   filename: descriptor.filename,
-  //   id: mockId,
-  //   source: descriptor.template?.content as string
-  // })
-  // console.log(b, r)
-  // const app = createApp()
-
-  // const html = await renderToString(app)
-  // return html
 }
 
 export async function vue2MdByPath (filepath: string) {
