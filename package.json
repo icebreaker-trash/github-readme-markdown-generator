@@ -11,7 +11,8 @@
     "test": "jest",
     "init:rename": "node scripts/init/rename.js",
     "clean": "node scripts/clean.js",
-    "raw": "node scripts/raw"
+    "raw": "node scripts/raw",
+    "start": "ts-node src/index.ts"
   },
   "repository": {
     "type": "git",
