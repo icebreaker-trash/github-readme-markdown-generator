@@ -16,22 +16,23 @@ program
   .option('--host <string>', 'Host Address to use [0.0.0.0]')
   .option('-o, --open', 'Open browser window after starting the server.')
   .option(
-    '-r, --root <string>',
-    'Project root directory. Can be an absolute path, or a path relative from'
+    '-e, --entry <string>',
+    'Entry file path. Can be an absolute path, or a path relative from'
   )
   .action(async (options) => {
     const server = await dev({
       host: options.host,
       open: options.open,
       port: options.port,
-      root: options.root
+      entry: options.entry
+      // root: options.root
     })
     await server.listen()
     server.printUrls()
   })
   .command('build')
-  .action((...args) => {
-    console.log(args)
+  .action(async (options) => {
+    await build(options)
   })
 
 program.parse()
