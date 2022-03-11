@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "github-readme-markdown-generator",
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
     "dev": "yarn dts && cross-env NODE_ENV=development rollup -cw",
@@ -12,13 +11,15 @@
     "dts": "ttsc --emitDeclarationOnly -p tsconfig.dts.json",
     "test": "jest",
     "init:rename": "node scripts/init/rename.js",
-    "clean": "node scripts/clean.js"
+    "clean": "node scripts/clean.js",
+    "raw": "node bin/readme dev -p 9090 --host 0.0.0.0 --open --root ./demos/html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sonofmagic/github-readme-markdown-generator.git"
   },
   "files": [
+    "bin",
     "dist"
   ],
   "publishConfig": {
@@ -51,7 +52,10 @@
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "6.0.0",
+    "github-markdown-css": "^5.1.0",
     "jest": "^27.5.1",
+    "juice": "^8.0.0",
+    "portfinder": "^1.0.28",
     "rollup": "^2.70.0",
     "ts-jest": "^27.1.3",
     "ts-node": "^10.7.0",
@@ -61,7 +65,6 @@
     "typescript-transform-paths": "^3.3.1"
   },
   "dependencies": {
-    "juice": "^8.0.0",
     "vite": "^2.8.6"
   }
 }
